@@ -1,16 +1,6 @@
 import MemoriseCardModel from './memoriseCard';
 
-export type MemoriseModelParam = {
-  id: number,
-  bibleName: string,
-  chapter: number,
-  verse1: number,
-  verse2?: number,
-  content: string,
-  category?: string,
-  theme?: string,
-  createdDate?: Date,
-}
+export enum TranslationKey {'verse_gae' , 'verse_kor'}
 
 export default class MemoriseSeriesModel extends MemoriseCardModel {
 

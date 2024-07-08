@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
 import MemoriseCardSeriesRepository from "../../infrastructure/api/memorise.card";
-import MemoriseSeriesModel from "../model/memoriseSeriesCard";
+import MemoriseSeriesModel, { TranslationKey } from "../model/memoriseSeriesCard";
 
 export default class MemoriseSeriesCardUsecase {
   private _repository:MemoriseCardSeriesRepository;
@@ -32,12 +32,11 @@ export default class MemoriseSeriesCardUsecase {
           item.category,
           item.series_num,
           {
-            ['verse_gae'] : item.verse_gae,
-            ['verse_kor'] : item.verse_kor
+            [TranslationKey.verse_gae] : item.verse_gae,
+            [TranslationKey.verse_kor] : item.verse_kor
           }
         )
       });
-
       return CardList;
     } catch (error) {
       console.error(error);
