@@ -1,7 +1,8 @@
 import Http from './http';
 const API_URL = "/resource";
 
-export const MemoriseCardAPI = {
+export default class MemoriseCardRepository  {
+
   async getAll(code:number):Promise<any> {
     const params = { data: { code } }; 
     try {
@@ -11,7 +12,7 @@ export const MemoriseCardAPI = {
     } catch (error) {
       throw error;
     }
-  },
+  }
   async get(cardNum: number):Promise<any> {
     const params = { data: { cardNum } }; 
     try {
