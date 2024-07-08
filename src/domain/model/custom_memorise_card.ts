@@ -21,7 +21,7 @@ export class CustomMemoriseModel extends MemoriseCardModel {
       theme, category, seriesNum
     );
   }
-  getContent(translationKey: string): string {
+  getContent(translationKey?: string): string {
     return this.content
   }
   get userID() { return this._userID }
