@@ -1,11 +1,11 @@
 import { isEmpty } from "lodash";
-import MemoriseCardRepository from "../../infrastructure/api/memorise.card";
-import MemoriseModel from "../model/memorise_card";
+import MemoriseCardSeriesRepository from "../../infrastructure/api/memorise.card";
+import MemoriseSeriesModel from "../model/memoriseSeriesCard";
 
-export default class MemoriseCardUsecase {
-  private _repository:MemoriseCardRepository;
+export default class MemoriseSeriesCardUsecase {
+  private _repository:MemoriseCardSeriesRepository;
   
-  constructor(repository: MemoriseCardRepository) {
+  constructor(repository: MemoriseCardSeriesRepository) {
     this._repository = repository
   }
 
@@ -20,14 +20,22 @@ export default class MemoriseCardUsecase {
         return null;
       }
       const CardList = res.map(item => {
-        return new MemoriseModel({
-          bibleName: item.bible_name,
-          chapter: item.chapter,
-          verse1: item.f_verse,
-          verse2: item.l_verse ?? undefined,
-          content: item.verse_gae,
-          id: item.id,
-        })
+        return new MemoriseSeriesModel(
+          item.id,
+          item.card_num,
+          item.bible_name,
+          item.bible_code,
+          item.chapter,
+          item.f_verse,
+          item.l_verse ?? undefined,
+          item.theme,
+          item.category,
+          item.series_num,
+          {
+            ['verse_gae'] : item.verse_gae,
+            ['verse_kor'] : item.verse_kor
+          }
+        )
       });
 
       return CardList;
@@ -46,14 +54,22 @@ export default class MemoriseCardUsecase {
        */
       if(isEmpty(res)) return null;
       
-      const Card = new MemoriseModel({
-        bibleName: res.bible_name,
-        chapter: res.chapter,
-        verse1: res.f_verse,
-        verse2: res.l_verse ?? undefined,
-        content: res.verse_gae,
-        id: res.id,
-      });
+      const Card = new MemoriseSeriesModel(
+        res.id,
+        res.card_num,
+        res.bible_name,
+        res.bible_code,
+        res.chapter,
+        res.f_verse,
+        res.l_verse ?? undefined,
+        res.theme,
+        res.category,
+        res.series_num,
+        {
+          ['verse_gae'] : res.verse_gae,
+          ['verse_kor'] : res.verse_kor
+        }
+      );
       
       return Card;
 

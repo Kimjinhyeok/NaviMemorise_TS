@@ -1,7 +1,7 @@
 import Http from './http';
 const API_URL = "/resource";
 
-export default class MemoriseCardRepository  {
+export default class MemoriseCardSeriesRepository  {
 
   async getAll(code:number):Promise<any> {
     const params = { data: { code } }; 
