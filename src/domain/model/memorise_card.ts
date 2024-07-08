@@ -7,7 +7,7 @@ export type MemoriseModelParam = {
   content: string,
   category?: string,
   theme?: string,
-  createdDate: Date,
+  createdDate?: Date,
 }
 
 export default class MemoriseModel {
@@ -19,7 +19,7 @@ export default class MemoriseModel {
   private _content: string;
   private _category?: string;
   private _theme?: string;
-  private _createdDate: Date;
+  private _createdDate?: Date;
 
   constructor(param: MemoriseModelParam) {
     this._id = param.id;
