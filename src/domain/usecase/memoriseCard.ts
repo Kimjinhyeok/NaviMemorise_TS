@@ -9,7 +9,7 @@ export default class MemoriseSeriesCardUsecase {
     this._repository = repository
   }
 
-  async getCardByCategory(category = 0) {
+  async getCardsByCategory(category = 0) {
     try {
       const res = await this._repository.getAll(category);
 
@@ -44,7 +44,7 @@ export default class MemoriseSeriesCardUsecase {
     }
   }
 
-  async getOneCard(cardNum = -1) {
+  async getCard(cardNum = -1) {
     try {
       const res = await this._repository.get(cardNum);
 
