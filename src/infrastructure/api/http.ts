@@ -13,7 +13,6 @@ type ParamType = {
 }
 
 const http = axios.create({
-  baseURL : ServerURL,
   withCredentials : true
 });
 
@@ -28,7 +27,7 @@ function dataToQuery(params: ObjType) {
 async function post(url = "", params:ParamType) {
   const { data, options } = params;
   try {
-    const result = await http.post(`/${url}`, data, options ?? {});
+    const result = await http.post(`${ServerURL}/${url}`, data, options ?? {});
     if (result instanceof Error) {
       throw result;
     }
@@ -43,7 +42,7 @@ async function get(url = "", params:ParamType) {
     url += dataToQuery(data);
   }
   try {
-    const result = await http.get(`/${url}`, options ?? {});
+    const result = await http.get(`${ServerURL}/${url}`, options ?? {});
     if (result instanceof Error) {
       throw result;
     }
@@ -55,7 +54,7 @@ async function get(url = "", params:ParamType) {
 async function put(url = "", params:ParamType) {
   const { data, options } = params;
   try {
-    const result = await http.put(`/${url}`, data ?? {}, options ?? {});
+    const result = await http.put(`${ServerURL}/${url}`, data ?? {}, options ?? {});
     if (result instanceof Error) {
       throw result;
     }
@@ -70,7 +69,7 @@ async function del(url = "", params:ParamType) {
     url += dataToQuery(data);
   }
   try {
-    const result = await http.delete(`/${url}`, options ?? {});
+    const result = await http.delete(`${ServerURL}/${url}`, options ?? {});
     if (result instanceof Error) {
       throw result;
     }
