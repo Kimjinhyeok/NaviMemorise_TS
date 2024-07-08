@@ -1,6 +1,6 @@
 import MemoriseCardModel from "./memoriseCard";
 
-export class CustomMemoriseModel extends MemoriseCardModel {
+export class MemoriseCustomModel extends MemoriseCardModel {
 
   constructor(
     id = '',
