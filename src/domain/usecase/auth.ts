@@ -26,12 +26,8 @@ export default class AuthUsecase {
   ) {
     try {
       const res = this.authRepository.signUp({
-        id,
-        password,
-        passwordRepeat,
-        name,
-        mobile,
-        email,
+        id, password, passwordRepeat, 
+        name, mobile, email,
       });
 
       return res;
