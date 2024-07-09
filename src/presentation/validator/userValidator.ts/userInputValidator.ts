@@ -1,4 +1,6 @@
-export default class UserValidator {
+import ValidationResult from "../validationResult";
+
+export default class UserInputValidator {
 
   private UserInputValidated:{[key:string]:boolean} = {
     password : true,
@@ -17,7 +19,7 @@ export default class UserValidator {
     private mobile:string,
   ){ return this }
 
-  test = () => {
+  test = ():ValidationResult => {
     try {
       if(!this.idTest()) {
         this.UserInputValidated.id = false;
@@ -45,8 +47,13 @@ export default class UserValidator {
         this.UserInputValidated[key] = false;
       }); //에러 발생시 전영역 에러처리
     } finally {
-      return Object({...this.UserInputValidated}); // copy result      
+      return Object({isValid : this.getResult(), error: {...this.UserInputValidated}}); // copy result      
     }
+  }
+
+  private getResult = () => {
+    return Object.keys(this.UserInputValidated)
+                  .some(key => this.UserInputValidated[key] === true);
   }
   private idTest = () => {
     return this.id && this.id.trim().length > 0;
