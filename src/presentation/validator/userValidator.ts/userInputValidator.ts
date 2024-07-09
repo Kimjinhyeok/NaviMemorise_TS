@@ -53,7 +53,7 @@ export default class UserInputValidator {
 
   private getResult = () => {
     return Object.keys(this.UserInputValidated)
-                  .some(key => this.UserInputValidated[key] === false);
+                  .every(key => this.UserInputValidated[key] === false);
   }
   private idTest = () => {
     return this.id && this.id.trim().length > 0;
