@@ -21,25 +21,25 @@ export default class UserInputValidator {
 
   test = ():ValidationResult => {
     try {
-      if(!this.idTest()) {
+      if(this.idTest()) {
         this.UserInputValidated.id = false;
       }
-      if(!this.emailTest()) {
+      if(this.emailTest()) {
         this.UserInputValidated.email = false;
       }
-      if(!this.mobileTest()) {
+      if(this.mobileTest()) {
         this.UserInputValidated.mobile = false;
       }
-      if(!this.passwordTest(this.password)) {
+      if(this.passwordTest(this.password)) {
         this.UserInputValidated.password = false;
       }
-      if(!this.passwordTest(this.passwordRepeat)) {
+      if(this.passwordTest(this.passwordRepeat)) {
         this.UserInputValidated.passwordRepeat = false;
       }
-      if(!this.passwordEqualTest()) {
+      if(this.passwordEqualTest()) {
         this.UserInputValidated.passwordRepeat = false;
       }
-      if(!this.nameTest()) {
+      if(this.nameTest()) {
         this.UserInputValidated.name = false;
       }
     } catch (error) {
@@ -53,7 +53,7 @@ export default class UserInputValidator {
 
   private getResult = () => {
     return Object.keys(this.UserInputValidated)
-                  .some(key => this.UserInputValidated[key] === true);
+                  .some(key => this.UserInputValidated[key] === false);
   }
   private idTest = () => {
     return this.id && this.id.trim().length > 0;
@@ -78,6 +78,6 @@ export default class UserInputValidator {
   }
 
   private mobileTest = () => {
-    return this.mobile && /^\d{3}-\d{3,4}-\d{4}$/.test(this.mobile);
+    return !this.mobile || (this.mobile && /^\d{3}-\d{3,4}-\d{4}$/.test(this.mobile));
   }
 }
