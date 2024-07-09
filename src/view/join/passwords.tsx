@@ -8,7 +8,7 @@ type JoinPasswordsProps = {
   },
   handleChange: Function
 }
-export default function JoinPasswordsComponent(props: JoinPasswordsProps) {
+export default function JoinPasswordsComponent(props: JoinPasswordsProps = { value : {}, handleChange : ()=>{}}) {
 
   const { value, handleChange } = props;
 
@@ -51,8 +51,7 @@ export default function JoinPasswordsComponent(props: JoinPasswordsProps) {
               </IconButton>
             </InputAdornment>
           }
-        >
-        </OutlinedInput>
+        />
         <FormHelperText>{handlePasswordMinValidate() ? "비밀번호는 최소 8자 이상이어야합니다." : ''}</FormHelperText>
       </FormControl>
       <FormControl variant='outlined' required={true} error={handlePasswordEqualValidate()}>
@@ -73,8 +72,7 @@ export default function JoinPasswordsComponent(props: JoinPasswordsProps) {
               </IconButton>
             </InputAdornment>
           }
-        >
-        </OutlinedInput>
+        />
         <FormHelperText>{handlePasswordEqualValidate() ? "비밀번호가 일치하지 않습니다." : ""}</FormHelperText>
       </FormControl>
     </>
