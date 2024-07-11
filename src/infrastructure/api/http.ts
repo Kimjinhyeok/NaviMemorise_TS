@@ -8,8 +8,8 @@ type ObjType = {
   [key: string]: string|number
 }
 type ParamType = {
-  data : ObjType,
-  options?: ObjType|null
+  data : ObjType|undefined,
+  options?: ObjType|undefined
 }
 
 const http = axios.create({
@@ -24,10 +24,9 @@ function dataToQuery(params: ObjType) {
   return query;
 }
 
-async function post(url = "", params:ParamType) {
-  const { data, options } = params;
+async function post(url:string, params?:ParamType) {
   try {
-    const result = await http.post(`${ServerURL}/${url}`, data, options ?? {});
+    const result = await http.post(`${ServerURL}/${url}`, params?.data, params?.options);
     if (result instanceof Error) {
       throw result;
     }
@@ -36,13 +35,12 @@ async function post(url = "", params:ParamType) {
     throw error;
   }
 }
-async function get(url = "", params:ParamType) {
-  const { data, options } = params;
-  if (!isEmpty(data)) {
-    url += dataToQuery(data);
+async function get(url:string, params?:ParamType) {
+  if (!isEmpty(params?.data)) {
+    url += dataToQuery(params?.data);
   }
   try {
-    const result = await http.get(`${ServerURL}/${url}`, options ?? {});
+    const result = await http.get(`${ServerURL}/${url}`, params?.options);
     if (result instanceof Error) {
       throw result;
     }
@@ -51,10 +49,9 @@ async function get(url = "", params:ParamType) {
     throw error;
   }
 }
-async function put(url = "", params:ParamType) {
-  const { data, options } = params;
+async function put(url:string, params?:ParamType) {
   try {
-    const result = await http.put(`${ServerURL}/${url}`, data ?? {}, options ?? {});
+    const result = await http.put(`${ServerURL}/${url}`, params?.data, params?.options);
     if (result instanceof Error) {
       throw result;
     }
@@ -63,13 +60,12 @@ async function put(url = "", params:ParamType) {
     throw error;
   }
 }
-async function del(url = "", params:ParamType) {
-  const { data, options } = params;
-  if (!isEmpty(data)) {
-    url += dataToQuery(data);
+async function del(url:string, params?:ParamType) {
+  if (!isEmpty(params?.data)) {
+    url += dataToQuery(params?.data);
   }
   try {
-    const result = await http.delete(`${ServerURL}/${url}`, options ?? {});
+    const result = await http.delete(`${ServerURL}/${url}`, params?.options);
     if (result instanceof Error) {
       throw result;
     }
