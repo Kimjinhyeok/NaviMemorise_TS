@@ -1,5 +1,12 @@
 import MemoriseCardModel from "./memoriseCard";
-
+export type MemoriseCustomCardType = {
+  bible_code:number,
+  theme:string,
+  content:string,
+  chapter:number,
+  f_verse:number,
+  l_verse:number,
+}
 export class MemoriseCustomModel extends MemoriseCardModel {
 
   constructor(
