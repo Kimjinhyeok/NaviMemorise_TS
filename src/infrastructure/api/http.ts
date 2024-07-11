@@ -36,7 +36,7 @@ async function post(url:string, params?:ParamType) {
   }
 }
 async function get(url:string, params?:ParamType) {
-  if (!isEmpty(params?.data)) {
+  if (params?.data && !isEmpty(params?.data)) {
     url += dataToQuery(params?.data);
   }
   try {
@@ -61,8 +61,8 @@ async function put(url:string, params?:ParamType) {
   }
 }
 async function del(url:string, params?:ParamType) {
-  if (!isEmpty(params?.data)) {
-    url += dataToQuery(params?.data);
+  if (params?.data && !isEmpty(params?.data)) {
+    url += dataToQuery(params.data);
   }
   try {
     const result = await http.delete(`${ServerURL}/${url}`, params?.options);
