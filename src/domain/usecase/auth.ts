@@ -8,7 +8,7 @@ export default class AuthUsecase {
 
   async signIn(id = "", password = "") {
     try {
-      const res = this.authRepository.signIn({id, password});
+      const res = await this.authRepository.signIn({id, password});
 
       return res;
     } catch (error) {
@@ -25,7 +25,7 @@ export default class AuthUsecase {
     email = "",
   ) {
     try {
-      const res = this.authRepository.signUp({
+      const res = await this.authRepository.signUp({
         id, password, passwordRepeat, 
         name, mobile, email,
       });
@@ -38,7 +38,7 @@ export default class AuthUsecase {
   }
   async signOut() {
     try {
-      const res = this.authRepository.signOut();
+      const res = await this.authRepository.signOut();
 
       return res;
     } catch (error) {
@@ -48,7 +48,7 @@ export default class AuthUsecase {
   }
   async leave() {
     try {
-      const res = this.authRepository.leave();
+      const res = await this.authRepository.leave();
 
       return res;
     } catch (error) {
@@ -60,7 +60,7 @@ export default class AuthUsecase {
     try {
 
       const data = { password };
-      const res = this.authRepository.checkPassword(data);
+      const res = await this.authRepository.checkPassword(data);
 
       return res;
     } catch (error) {
@@ -71,7 +71,7 @@ export default class AuthUsecase {
   async changePassword(password = "") {
     try {
       const data = { password };
-      const res = this.authRepository.changePassword(data);
+      const res = await this.authRepository.changePassword(data);
 
       return res;
     } catch (error) {
@@ -82,7 +82,7 @@ export default class AuthUsecase {
   async reqEmail(email = "") {
     try {
       const data = { email };
-      const res = this.authRepository.reqEmail(data);
+      const res = await this.authRepository.reqEmail(data);
 
       return res;
     } catch (error) {
